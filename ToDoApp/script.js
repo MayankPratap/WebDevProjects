@@ -69,6 +69,33 @@ function CreateToDoItems(){
 
 }
 
+function ReadToDoItems(){
+
+    todo.forEach((element)=> {
+
+        let li = document.createElement("li");
+        let style ="";
+         
+        if(element.status){
+
+            style ="style='text-decoration: line-through'";
+
+        }
+
+        const todoItems = `<div ${style} title="Hit Double Click and Complete" ondblclick="CompletedToDoItems(this)">${element.item} 
+                          ${style===""? "": '<img class="todo-controls src="images/checkMark.png"/>'}</div> 
+                          <div> ${style===""? '<img class="edit todo-controls" onclick="UpdateToDoItems(this)" src="images/pencil.jpg" />': ""}
+                          <img class ="delete todo-controls" onclick="DeleteToDoItems(this)" src="images/delete.jpg" /> </div> </div>`;
+        
+        li.innerHTML = todoItems;
+        listItems.appendChild(li);
+
+
+    });
+}
+
+ReadToDoItems();
+
 function setLocalStorage() {
     localStorage.setItem("todo-list", JSON.stringify(todo));
 }
