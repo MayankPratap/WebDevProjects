@@ -96,6 +96,73 @@ function ReadToDoItems(){
 
 ReadToDoItems();
 
+function UpdateToDoItems(e){
+
+    if(e.parentElement.parentElement.querySelector("div").style.textDecoration===""){ 
+
+        todoValue.value = e.parentElement.parentElement.querySelector("div").innerText;
+
+        updateText = e.parentElement.parentElement.querySelector("div");
+
+        addUpdate.setAttribute("onclick", "UpdateOnSelectionItems()");
+
+        addUpdate.setAttribute("src", "images/refresh.png");
+
+        todoValue.focus();
+
+    }
+
+}
+
+function UpdateOnSelectionItems(){
+
+    let isPresent = false; 
+
+    todo.forEach((element)=>{
+
+        if(element.item == todoValue.value){
+
+            isPresent = true; 
+
+        }
+
+    });
+
+    if(isPresent){
+
+        setAlertMessage("This item already present in the list!");
+        return;
+    }
+
+    todo.forEach((element) => {
+
+        if(element.item == updateText.innerText.trim()){
+            element.item = todoValue.value;
+        }
+    });
+
+    setLocalStorage();
+
+    updateText.innerText = todoValue.value; 
+    addUpdate.setAttribute("onclick", "CreateToDoItems()");
+    addUpdate.setAttribute("src", "images/plus.png");
+    todoValue.value="";
+    setAlertMessage("Todo item updated successfully");
+
+}
+
+function setAlertMessage(message){
+
+    todoAlert.removeAttribute("class");
+    todoAlert.innerText = message; 
+    setTimeout(()=>{
+
+        todoAlert.classList.add("toggleMe");
+
+    }, 1000);
+
+}
+
 function setLocalStorage() {
     localStorage.setItem("todo-list", JSON.stringify(todo));
 }
