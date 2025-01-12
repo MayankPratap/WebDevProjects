@@ -151,6 +151,35 @@ function UpdateOnSelectionItems(){
 
 }
 
+function DeleteToDoItems(e){
+
+    let deleteValue = e.parentElement.parentElement.querySelector("div").innerText;
+
+    if(confirm(`Are you sure to delete this? ${deleteValue}!`)){
+
+        e.parentElement.parentElement.setAttribute("class", "deleted-item");
+        todoValue.focus();
+
+        todo.forEach((element) => {
+
+            if(element.item == deleteValue.trim()){
+                todo.splice(element, 1);
+            }
+
+        });
+
+        setTimeout(()=>{
+
+            e.parentElement.parentElement.remove();
+
+        }, 1000);
+
+        setLocalStorage();
+
+    }
+
+}
+
 function setAlertMessage(message){
 
     todoAlert.removeAttribute("class");
