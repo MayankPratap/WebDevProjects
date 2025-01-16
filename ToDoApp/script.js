@@ -185,7 +185,7 @@ function CompletedToDoItems(e){
     if(e.parentElement.querySelector("div").style.textDecoration===""){
 
         const img = document.createElement("img");
-        img.src = "images/check-mark.png";
+        img.src = "images/checkMark.png";
         img.className = "todo-controls";
         e.parentElement.querySelector("div").style.textDecoration ="line-through";
         e.parentElement.querySelector("div").appendChild(img);
