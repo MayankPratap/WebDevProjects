@@ -160,13 +160,7 @@ function DeleteToDoItems(e){
         e.parentElement.parentElement.setAttribute("class", "deleted-item");
         todoValue.focus();
 
-        todo.forEach((element) => {
-
-            if(element.item == deleteValue.trim()){
-                todo.splice(element, 1);
-            }
-
-        });
+        todo = todo.filter((element) => element.item !== deleteValue.trim());
 
         setTimeout(()=>{
 
